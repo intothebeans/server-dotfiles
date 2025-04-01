@@ -1,0 +1,11 @@
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[user]
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEYVFPUEzp3ImUQgOhymVptRA1DlbuNnMzyO/Xao2OfI
+	email = intothebeans@noreply.codeberg.org
+	name = Aiden
+
+[init]
+	defaultBranch = main
