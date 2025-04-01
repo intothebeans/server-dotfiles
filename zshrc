@@ -12,7 +12,7 @@ fi
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+(( ${+_comps} )) && _comps[zinit<0;38;12m]=_zinit
 ### End of Zinit's installer chunk
 
 export EDITOR="nvim"
@@ -29,7 +29,12 @@ zinit light Aloxaf/fzf-tab
 # Snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::docker-compose
+zinit snippet OMZP::docker 
 zinit snippet OMZP::debian
+zinit snippet OMZP::nmap 
+zinit snippet OMZP::systemd 
+zinit snippet OMZP::tmux
+
 # Load completions
 autoload -U compinit  && compinit
 zinit cdreplay -q
@@ -38,15 +43,6 @@ zinit cdreplay -q
 bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
-
-# Aliases 
-alias ls="eza --color=always --icons=always --hyperlink --classify=always"
-alias tree="eza -T "
-alias se="sudoedit"
-alias nv="nvim"
-alias prev-log="SYSTEMD_COLORS=1 journalctl -b 1 -k | less +^ -r"
-alias sudo="sudo "
-alias vim="nvim"
 
 # History
 HISTSIZE=5000
