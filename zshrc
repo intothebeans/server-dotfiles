@@ -21,22 +21,23 @@ export PATH="$PATH:$HOME/.local/bin"
 export FPATH="$HOME/.config/eza/completions/zsh/:$FPATH"
 
 # Plugins
-zinit light zsh-users/zsh-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light Aloxaf/fzf-tab
+zinit ice as"completion"
+zinit snippet OMZP::docker/completions/_docker
 
 # Snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::docker-compose
 zinit snippet OMZP::docker 
 zinit snippet OMZP::debian
-zinit snippet OMZP::nmap 
 zinit snippet OMZP::systemd 
-zinit snippet OMZP::tmux
+zinit snippet OMZP::tmux/tmux.plugin.zsh
 
 # Load completions
-autoload -U compinit  && compinit
+autoload -U compinit && compinit
 zinit cdreplay -q
 
 # Keybinds
@@ -72,3 +73,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(~/.rbenv/bin/rbenv init - --no-rehash zsh)"
+source ~/.zsh_alias
