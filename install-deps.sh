@@ -2,15 +2,13 @@
 
 # basic packages 
 sudo apt update 
-sudo apt install -y zsh tmux ripgrep batcat \
-    unzip trash-cli build-essential \ 
-    python3-pip python3-venv python3-pipx gpg
+sudo apt install -y zsh tmux ripgrep bat unzip trash-cli build-essential python3-pip python3-venv python3-virtualenv gpg
 
 # install tpm 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 
 
 # install neovim 
-sudo add-apt-repository ppa:neovim-ppa/stable -y 
+sudo add-apt-repository ppa:neovim-ppa/unstable -y 
 sudo apt update 
 sudo apt install -y neovim 
 
