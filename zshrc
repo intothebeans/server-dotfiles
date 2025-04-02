@@ -1,43 +1,42 @@
-# Add deno completions to search path
-if [[ ":$FPATH:" != *":/home/admin/.zsh/completions:"* ]]; then export FPATH="/home/admin/.zsh/completions:$FPATH"; fi
-source /etc/bashrc.d/dietpi.bash
-### Added by Zinit's installer
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
+# Set the directory we want to store zinit and plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# Download Zinit, if it's not there yet
+if [ ! -d "$ZINIT_HOME" ]; then
+   mkdir -p "$(dirname $ZINIT_HOME)"
+   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-### End of Zinit's installer chunk
+# Source/Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
 
 export EDITOR="nvim"
 export SUDO_EDITOR="nvim"
 export PATH="$PATH:$HOME/.local/bin"
-export FPATH="$HOME/.config/eza/completions/zsh/:$FPATH"
 
 # Plugins
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light Aloxaf/fzf-tab
-zinit ice as"completion"
-zinit snippet OMZP::docker/completions/_docker
 
-# Snippets
+# Completions
+zinit ice as"completion"
+zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+zinit light felipec/git-completion
+
+
+# Snippets 
 zinit snippet OMZP::git
 zinit snippet OMZP::docker-compose
-zinit snippet OMZP::docker 
+zinit snippet OMZP::docker
 zinit snippet OMZP::debian
 zinit snippet OMZP::systemd 
-zinit snippet OMZP::tmux/tmux.plugin.zsh
+zinit snippet OMZP::command-not-found
+zinit snippet OMZP::colored-man-pages
 
 # Load completions
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 # Keybinds
@@ -65,7 +64,7 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color $realpath'
 
 eval "$(zoxide init --cmd cd zsh)"
-eval "$(starship init zsh)"
+eval "$(oh-my-posh init zsh --config ~/.omp/custom.omp.toml)" # Load Oh My Posh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export NVM_DIR="$HOME/.nvm"

@@ -1,5 +1,5 @@
 # ls command
-alias ls='eza --color=always --icons=always --hyperlinks --classify=always --group-directories-first'
+alias ls='eza --color=always --icons=always --hyperlink --classify=always --group-directories-first'
 alias l='ls -lho'
 alias la='ls -lA'
 alias lr='ls -lRA --sort=date'
