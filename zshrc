@@ -15,26 +15,23 @@ autoload -Uz _zinit
 
 export EDITOR="nvim"
 export SUDO_EDITOR="nvim"
-export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.local/share/bob/nvim-bin"
 
 # Plugins
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light akash329d/zsh-alias-finder
-zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light felipec/git-completion
-zinit ice as"completion"
-zinit snippet OMZP::docker/completions/_docker
+zinit light Aloxaf/fzf-tab
 
-# Snippets 
+# Snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::docker-compose
 zinit snippet OMZP::debian
-zinit snippet OMZP::systemd 
+zinit snippet OMZP::systemd
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::colored-man-pages
-zinit snippet OMZP::docker 
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -71,6 +68,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-eval "$(~/.rbenv/bin/rbenv init - --no-rehash zsh)"
 source ~/.zsh_alias
 
