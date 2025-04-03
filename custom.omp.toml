@@ -1,0 +1,298 @@
+version = 3
+
+[palette]
+  blue = '12'
+  cyan = '14'
+  dark-blue = '4'
+  dark-red = '1'
+  dark-yellow = '3'
+  electric-green = '#00FF00'
+  green = '10'
+  grey = '8'
+  light-purple = '13'
+  pure-red = '#ff0000'
+  purple = '#c6a0f6'
+  red = '9'
+  white = '15'
+  yellow = '11'
+
+[secondary_prompt]
+  template = ' '
+  foreground = 'p:electric-green'
+
+[transient_prompt]
+  template = '{{ .PromptCount }}  '
+  foreground = 'p:white'
+  foreground_templates = ['{{ if gt .Code 0 }}p:pure-red{{ end }}']
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+
+  [[blocks.segments]]
+    template = '<p:grey>╭─[</>{{ if .SSHSession }} {{ end }}{{ .UserName }}<p:red>@</><p:cyan>{{ .HostName }}</><p:grey>]</>'
+    foreground = 'p:green'
+    type = 'session'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '(󱐋)'
+    foreground = 'p:dark-yellow'
+    type = 'root'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<p:grey>—[</>{{ .UpstreamIcon }} {{ .HEAD }}'
+    foreground = 'p:purple'
+    type = 'git'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      branch_icon = ' '
+      cache_duration = 'none'
+      fetch_upstream_icon = true
+
+  [[blocks.segments]]
+    template = '{{if .BranchStatus }} {{ .BranchStatus }}{{ end }} '
+    foreground = 'p:red'
+    type = 'git'
+    style = 'plain'
+    foreground_templates = ['{{ if contains "" .BranchStatus  }}p:blue{{ end }}', '{{ if contains "" .BranchStatus }}p:green{{ end }}', '{{ if contains "" .BranchStatus }}p:dark-red{{ end }}']
+
+    [blocks.segments.properties]
+      branch_ahead_icon = ' '
+      branch_behind_icon = ' '
+      branch_gone_icon = '  '
+      branch_identical_icon = ''
+      cache_duration = 'none'
+      fetch_status = true
+
+  [[blocks.segments]]
+    template = '{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}<p:red>  {{ .Staging.String }}</>{{ end }}<p:grey>]</>'
+    foreground = 'p:light-purple'
+    type = 'git'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      fetch_status = true
+
+  [[blocks.segments]]
+    template = ' {{ .FormattedMs }}'
+    foreground = '#6e738d'
+    type = 'executiontime'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      style = 'roundrock'
+      threshold = 0.0
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'right'
+
+  [[blocks.segments]]
+    template = '<p:grey>(</> {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}<p:grey>)</>'
+    foreground = '#3C873A'
+    type = 'node'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      fetch_package_manager = true
+      npm_icon = ' <#cc3a3a></> '
+      yarn_icon = ' <#348cba></>'
+
+  [[blocks.segments]]
+    template = '<p:grey>(</> {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}<p:grey>)</>'
+    foreground = '#FFE873'
+    type = 'python'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<p:grey>(</> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+    foreground = '#ec2729'
+    type = 'java'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<p:grey>(</> {{ if .Unsupported }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+    foreground = '#0d6da8'
+    type = 'dotnet'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<p:grey>(</> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+    foreground = '#06aad5'
+    type = 'go'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<p:grey>(</> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+    foreground = '#925837'
+    type = 'rust'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<p:grey>(</> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+    foreground = '#055b9c'
+    type = 'dart'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<p:grey>(</> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+    foreground = '#ce092f'
+    type = 'angular'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<p:grey>(</>{{ if .Error }}{{ .Error }}{{ else }}Nx {{ .Full }}{{ end }}<p:grey>)</>'
+    foreground = 'p:grey'
+    type = 'nx'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<p:grey>(</><#ca3c34></> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+    foreground = '#359a25'
+    type = 'julia'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<p:grey>(</> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+    foreground = '#9c1006'
+    type = 'ruby'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<p:grey>(</><#f5bf45></> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:grey>)</>'
+    foreground = '#5398c2'
+    type = 'azfunc'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<p:grey>(</> {{.Profile}}{{if .Region}}@{{.Region}}{{end}}<p:grey>)</>'
+    foreground = '#faa029'
+    type = 'aws'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<p:grey>(</> {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}<p:grey>)</>'
+    foreground = '#316ce4'
+    type = 'kubectl'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<p:grey>(</>{{ if .WSL }}WSL {{ end }} {{.Icon}} <p:grey>)—</>'
+    foreground = 'p:white'
+    type = 'os'
+    style = 'plain'
+    foreground_templates = ['{{if eq .OS "linux"}}#cb91f2{{ end }}', '{{if eq .OS "endeavouros"}}#3c6eb4{{ end }}', '{{if eq .OS "ubuntu"}}#e95420{{ end }}', '{{if eq .OS "windows"}}#00a4ef{{ end }}']
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      endeavouros = ''
+      linux = ''
+      macos = ''
+      windows = ''
+
+  [[blocks.segments]]
+    template = '<p:grey>[</>{{ .CurrentDate | date .Format }}<p:grey>]</>'
+    foreground = 'p:yellow'
+    type = 'time'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      time_format = '15:04:03'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    leading_diamond = '<p:grey>󰇙</>'
+    template = '{{ .Path }} '
+    foreground = 'p:white'
+    type = 'path'
+    style = 'diamond'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      folder_icon = '…󱧭…'
+      folder_separator_icon = '  '
+      home_icon = ' '
+      max_depth = 3
+      style = 'agnoster_short'
+
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    template = '╰─'
+    foreground = 'p:grey'
+    type = 'text'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = ' '
+    foreground = 'p:electric-green'
+    type = 'status'
+    style = 'plain'
+    foreground_templates = ['{{ if gt .Code 0 }}p:pure-red{{ end }}']
+
+    [blocks.segments.properties]
+      always_enabled = true
+      cache_duration = 'none'
