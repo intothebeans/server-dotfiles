@@ -1,28 +1,26 @@
-# ls command
-alias ls='eza --color=always --icons=always --hyperlink --classify=always --group-directories-first'
+alias ls='eza --git --color=always --icons=always --hyperlink --classify=always --group-directories-first '
 alias l='ls -lho'
-alias la='ls -lA'
+alias la='ls -lhAo'
 alias lr='ls -lRA --sort=date'
 alias lt='ls -lA --sort=date'
-alias lart='ls -1a --sort=age'
-alias lrt='ls -1 --sort=age'
-alias lsr='ls -1R'
-alias lsn='ls -1'
+alias lart='ls -hao --sort=age'
+alias lrt='ls -ho --sort=age'
+alias lsr='ls -1RL 3'
 
 # file handling
-alias rm='trash '
-alias cp='rsync -avz --progress -h'
-alias mv='rsync -avz --progress -h --remove-source-files'
-alias mvup='rsync -avzu --progress -h'
-alias mvs='rsync -avzu --delete --progress -h'
-alias zshrc='${=EDITOR} ~/.zshrc'
+alias tr="trash "
+alias rm='rm -iv'
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias mvup='mv -uiv'
+alias sync='rsync -avzu --delete --progress -h'
 alias t='tail -f'
 
 # head tail shortcuts
 alias -g H='| head'
 alias -g T='| tail'
 alias -g G='| grep'
-alias -g L='| less'
+alias -g P='| most'
 
 # other
 alias h='history'
