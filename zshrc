@@ -37,16 +37,6 @@ zinit light akash329d/zsh-alias-finder
 zinit light zsh-users/zsh-autosuggestions
 zinit ice as"completion"
 zinit snippet OMZP::docker/completions/_docker
-export SUDO_EDITOR="nvim"
-export PATH="$PATH:$HOME/.local/bin:$HOME/.local/share/bob/nvim-bin"
-
-# Plugins
-zinit light zdharma-continuum/fast-syntax-highlighting
-zinit light akash329d/zsh-alias-finder
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-completions
-zinit light felipec/git-completion
-zinit light Aloxaf/fzf-tab
 
 # Snippets
 zinit snippet OMZP::git
