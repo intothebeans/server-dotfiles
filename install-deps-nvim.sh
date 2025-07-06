@@ -12,7 +12,10 @@ sudo apt install -t nala nala
 
 # basic packages
 sudo nala update
-sudo nala install -y zsh git curl wget tmux ripgrep bat unzip trash-cli build-essential python3-pip gpg rsync less gcc cmake stow
+sudo nala install zsh git curl wget tmux ripgrep bat unzip trash-cli build-essential python3-pip gpg rsync less gcc cmake stow
+# fix batcat
+mkdir -p ~/.local/bin
+ln -s /usr/bin/batcat ~/.local/bin/bat
 
 # install tpm
 read -p "Do you want to install tpm? ([y]/n) " -n 1 -r
@@ -53,7 +56,7 @@ if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
     echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
     sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
     sudo nala update
-    sudo nala install -y eza
+    sudo nala install eza
 fi
 
 # install starship

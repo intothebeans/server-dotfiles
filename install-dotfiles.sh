@@ -1,6 +1,6 @@
 #!/bin/bash
-# prompt whether to use vim or neovim version then generate the correct zshrc file
-# and use gnu stow
+# Prompts the user on which version to install, vim or neovim.
+# Then install dependencies and stow the dotfiles.
 
 read -p "Do you want to install the vim version? (y/n) " choice
 case $choice in

@@ -12,7 +12,7 @@ sudo apt install -t nala nala
 
 # main dependencies
 sudo nala update
-sudo nala install -y git curl wget zsh tmux ripgrep bat unzip trash-cli build-essential python3-pip gpg rsync less stow
+sudo nala install git curl wget zsh tmux ripgrep bat unzip trash-cli build-essential python3-pip gpg rsync less stow
 # fix batcat
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
@@ -44,7 +44,7 @@ if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
     echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
     sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
     sudo nala update
-    sudo nala install -y eza
+    sudo nala install eza
 fi
 
 # install starship
