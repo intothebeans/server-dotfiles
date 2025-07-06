@@ -21,7 +21,7 @@ sudo apt install -t nala nala
 
 # basic packages 
 sudo nala update 
-sudo nala install -y zsh git curl wget tmux ripgrep bat unzip trash-cli build-essential python3-pip gpg rsync less gcc cmake
+sudo nala install -y zsh git curl wget tmux ripgrep bat unzip trash-cli build-essential python3-pip gpg rsync less gcc cmake stow
 
 # install tpm 
 read -p "Do you want to install tpm? ([y]/n) " -n 1 -r

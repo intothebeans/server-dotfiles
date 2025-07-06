@@ -21,7 +21,7 @@ sudo apt install -t nala nala
 
 # main dependencies
 sudo nala update
-sudo nala install -y git curl wget zsh tmux ripgrep bat unzip trash-cli build-essential python3-pip gpg rsync less 
+sudo nala install -y git curl wget zsh tmux ripgrep bat unzip trash-cli build-essential python3-pip gpg rsync less stow
 # fix batcat 
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
