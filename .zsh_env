@@ -1,0 +1,4 @@
+# variables
+export apt_pref='nala'
+export apt_upgr='full-upgrade'
+export BAT_THEME='gruvbox-dark'
