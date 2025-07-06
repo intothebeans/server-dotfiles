@@ -1,1 +1,1 @@
-Sometimes when I'm dealing with servers, I beef things up. Re-doing all my configurations just to get things usable is a pain. Hence, these scripts.
+Sometimes when I'm dealing with servers, I beef things up. Re-doing all my configurations just to get things usable is a pain. Hence, these scripts. It also makes things easier when deploying new servers. What can I say, I like my terminal to treat me well. 
