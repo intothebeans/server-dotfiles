@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "$(cat beanin.txt)"
+echo "$(cat beanin.txt)" | fold -w 80 -s
 echo "============================================="
 echo "Welcome to the Beans Server Dotfiles installer!"
 echo "This script will install all necessary dependencies."
@@ -10,26 +10,17 @@ echo "Installing nala"
 curl https://gitlab.com/volian/volian-archive/-/raw/main/install-nala.sh | bash
 sudo apt install -t nala nala
 
-# basic packages
+# main dependencies
 sudo nala update
-sudo nala install -y zsh git curl wget tmux ripgrep bat unzip trash-cli build-essential python3-pip gpg rsync less gcc cmake stow
+sudo nala install -y git curl wget zsh tmux ripgrep bat unzip trash-cli build-essential python3-pip gpg rsync less stow
+# fix batcat
+mkdir -p ~/.local/bin
+ln -s /usr/bin/batcat ~/.local/bin/bat
 
 # install tpm
 read -p "Do you want to install tpm? ([y]/n) " -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-
-# install neovim
-read -p "Do you want to install neovim? ([y]/n) " -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
-    ARCH=$(uname -m)
-    wget https://github.com/MordechaiHadad/bob/releases/download/v4.1.1/bob-linux-$ARCH.zip -O bob.zip
-    unzip bob.zip
-    mv ./bob-linux-$ARCH/bob $HOME/.local/bin/
-    rm bob.zip
-    sudo chmod +x $HOME/.local/bin/bob
-    sudo $HOME/.local/bin/bob use latest
 fi
 
 # install fzf
@@ -63,8 +54,15 @@ if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
     starship preset bracketed-segments -o ~/.config/starship.toml
 fi
 
-# install nvm
-read -p "Do you want to install nvm? ([y]/n) " -n 1 -r
+# install vim
+read -p "Do you want to install vim? ([y]/n) " -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+    sudo nala install -y vim
+fi
+
+# install vim-plug
+read -p "Do you want to install vim-plug? ([y]/n) " -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
