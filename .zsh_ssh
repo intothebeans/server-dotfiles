@@ -1,0 +1,43 @@
+if [[ -n "$SSH_CONNECTION" && -z "$TMUX" && -z "$TMUX_AUTO" ]]; then 
+    export TMUX_AUTO=1
+    DEFAULT_SESSION="ssh_session"
+
+    tmux_menu() {
+        echo 
+        echo "==== TMUX MENU ===="
+        echo " 1) Attach to default session (default)"
+        echo " 2) Attach to existing session"
+        echo " 3) Create new named session"
+        echo " 4) List tmux sessions"
+        echo " 5) Quit to shell"
+        echo 
+
+        read "choice?Choice [default=1]"
+
+        case "$choice" in 
+            ""|"1")
+                tmux attach -t "$DEFAULT_SESSION" 2>/dev/null || tmux new -s "$DEFAULT_SESSION"
+                ;;
+            2)
+                tmux list-sessions
+                read "session?Enter session name: "
+                tmux attach -t "$session"
+                ;;
+            3)
+                read "newname?Enter new session name: "
+                tmux new -s "$newname"
+                ;;
+            4)
+                tmux list-sessions 
+                ;;
+            5)
+                echo "Continuing to shell"
+                ;;
+            *) 
+                echo "Invalid option, continuing to shell"
+                ;;
+        esac
+    }
+                
+    tmux_menu
+fi

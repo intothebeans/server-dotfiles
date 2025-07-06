@@ -1,0 +1,29 @@
+# eza
+alias ls='eza --git --color=always --icons=always --hyperlink --classify=always --group-directories-first '
+alias l='ls -lho'
+alias la='ls -lhAo'
+
+# file handling
+alias tr='trash '
+alias rm='trash '
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias mvup='mv -uiv'
+alias sync='rsync -avzu --delete --progress -h'
+alias mkdir='mkdir -pv'
+
+# pipe utils
+alias -g H='| head'
+alias -g T='| tail'
+alias -g G='| grep'
+alias -g P='| less'
+
+# other
+alias h='history'
+alias tree='eza -T '
+alias nv='nvim'
+alias v='vim'
+alias se='sudoedit'
+alias log='SYSTEMD_COLORS=1 journalctl -xeu'
+alias less='less -FSRXc'
+alias sudo='sudo '
