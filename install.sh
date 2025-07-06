@@ -5,14 +5,16 @@
 read -p "Do you want to install the vim version? (y/n) " choice
 case $choice in
 y | Y)
-    ./install-deps-vim.sh
+    ./dependencies.sh
+    ./vim.sh
     stow -t $HOME -d ../dots
     echo "export EDITOR=vim" >>$HOME/.zsh_env
     echo "export SUDO_EDITOR=vim" >>$HOME/.zsh_env
     echo "export PATH=$PATH:$HOME/.local/bin" >>$HOME/.zsh_env
     ;;
 n | N)
-    ./install-deps-nvim.sh
+    ./dependencies.sh
+    ./nvim.sh
     echo "export EDITOR=neovim" >>$HOME/.zsh_env
     echo "export SUDO_EDITOR=$HOME/.local/share/bob/nvim-bin/nvim" >>$HOME/.zsh_env
     echo "export PATH=$PATH:$HOME/.local/bin:$HOME/.local/share/bob/nvim-bin" >>$HOME/.zsh_env

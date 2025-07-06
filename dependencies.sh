@@ -10,9 +10,9 @@ echo "Installing nala"
 curl https://gitlab.com/volian/volian-archive/-/raw/main/install-nala.sh | bash
 sudo apt install -t nala nala
 
-# basic packages
+# main dependencies
 sudo nala update
-sudo nala install zsh git curl wget tmux ripgrep bat unzip trash-cli build-essential python3-pip gpg rsync less gcc cmake stow
+sudo nala install git curl wget zsh tmux ripgrep bat unzip trash-cli build-essential python3-pip gpg rsync less stow
 # fix batcat
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
@@ -21,18 +21,6 @@ ln -s /usr/bin/batcat ~/.local/bin/bat
 read -p "Do you want to install tpm? ([y]/n) " -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-
-# install neovim
-read -p "Do you want to install neovim? ([y]/n) " -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
-    ARCH=$(uname -m)
-    wget https://github.com/MordechaiHadad/bob/releases/download/v4.1.1/bob-linux-$ARCH.zip -O bob.zip
-    unzip bob.zip
-    mv ./bob-linux-$ARCH/bob $HOME/.local/bin/
-    rm bob.zip
-    sudo chmod +x $HOME/.local/bin/bob
-    sudo $HOME/.local/bin/bob use latest
 fi
 
 # install fzf
@@ -64,10 +52,4 @@ read -p "Do you want to install starship? ([y]/n) " -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
     curl -sS https://starship.rs/install.sh | sh
     starship preset bracketed-segments -o ~/.config/starship.toml
-fi
-
-# install nvm
-read -p "Do you want to install nvm? ([y]/n) " -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
 fi
