@@ -27,3 +27,6 @@ alias se='sudoedit'
 alias log='SYSTEMD_COLORS=1 journalctl -xeu'
 alias less='less -FSRXc'
 alias sudo='sudo '
+
+# commitizen
+alias commit='cz c -- -s'
