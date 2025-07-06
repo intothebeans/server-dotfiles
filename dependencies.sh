@@ -12,7 +12,7 @@ sudo apt install -t nala nala
 
 # main dependencies
 sudo nala update
-sudo nala install git curl wget zsh tmux ripgrep bat unzip trash-cli build-essential python3-pip gpg rsync less stow
+sudo nala install git curl wget zsh tmux ripgrep bat unzip trash-cli build-essential python3-pip gpg rsync less stow cmake gcc
 # fix batcat
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
@@ -52,4 +52,11 @@ read -p "Do you want to install starship? ([y]/n) " -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
     curl -sS https://starship.rs/install.sh | sh
     starship preset bracketed-segments -o ~/.config/starship.toml
+fi
+
+# install commitizen
+echo "Warning: commitizen installs using pip with --break-system-packages, this may break your system."
+read -p "Do you want to install commitizen? ([y]/n) " -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
+    python3 -m pip install commitizen cz-conventional-gitmoji --user --break-system-packages
 fi
