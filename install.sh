@@ -8,14 +8,14 @@ y | Y)
     ./dependencies.sh
     ./vim.sh
     stow -t $HOME -d ./dots .
-    echo "export EDITOR=vim" >>$HOME/.zsh_env
+    echo "export EDITOR=vim" >>$HOME/.zprofile
     echo "export SUDO_EDITOR=vim" >>$HOME/.zsh_env
     ;;
 n | N)
     ./dependencies.sh
     ./nvim.sh
-    echo "export EDITOR=nvim" >>$HOME/.zsh_env
-    echo "export SUDO_EDITOR=$HOME/.local/nvim/bin/nvim" >>$HOME/.zsh_env
+    echo "export EDITOR=nvim" >>$HOME/.zprofile
+    echo "export SUDO_EDITOR=$HOME/.local/nvim/bin/nvim" >>$HOME/.zprofile
     stow -t $HOME -d ./dots .
     ;;
 *) echo "Invalid choice" ;;
